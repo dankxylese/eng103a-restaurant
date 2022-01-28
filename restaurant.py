@@ -27,13 +27,12 @@ class Table:
                     # if instance from main list has more quantities than we need to remove
                     temp_order["quantity"] = instance["quantity"] - quantity  # update quantity
                     self.bill[counter] = temp_order  # push
-                    return
+                    return True
                 else:  # if quantity is equal
                     self.bill.pop(counter)  # remove
-                    return
-        if len(self.bill) == 0:
-            return
-        counter += 1
+                    return True
+            counter += 1
+        return False
 
     def get_subtotal(self):
         total = 0
@@ -51,7 +50,6 @@ class Table:
     def split_bill(self):
         final_price = self.get_subtotal()
         return final_price / self.customers
-
 
 # t = Table(1)
 # t.order("1", 1.0)
